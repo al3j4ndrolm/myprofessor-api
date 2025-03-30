@@ -1,0 +1,4 @@
+Flask
+selenium
+gunicorn
+webdriver-manager  # To automatically handle ChromeDriver installation
