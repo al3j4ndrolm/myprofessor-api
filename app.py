@@ -9,10 +9,10 @@ app = Flask(__name__)
 @app.route('/scrape', methods=['GET'])
 def scrape():
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')  # Run in headless mode
+    options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    options.binary_location = "/usr/bin/google-chrome"  # Specify Chrome binary location
+    options.binary_location = "/usr/bin/google-chrome"  # Correct Chrome binary location for most Linux systems
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.get('https://google.com')  # Replace with your target URL
