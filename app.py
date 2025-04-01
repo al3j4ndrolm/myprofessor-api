@@ -1,20 +1,21 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
 
 app = Flask(__name__)
 
 @app.route('/scrape', methods=['GET'])
 def scrape():
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
+    options.add_argument('--headless')  # Run in headless mode
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    
+    options.binary_location = "/usr/bin/google-chrome"  # Specify Chrome binary location
+
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver.get('https://example.com')  # Replace with your target URL
+    driver.get('https://google.com')  # Replace with your target URL
     title = driver.title
     driver.quit()
     
