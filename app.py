@@ -24,16 +24,17 @@ def scrape():
 
     # Set up Chrome options
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    
+    options.binary_location = "/opt/google/chrome/opt/google/chrome/google-chrome"
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
     # If we find a chrome binary, use it
     if chrome_path:
         options.binary_location = chrome_path
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver.get('https://example.com')  # Replace with your target URL
+    driver.get('https://google.com')  # Replace with your target URL
     title = driver.title
     driver.quit()
     
