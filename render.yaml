@@ -4,9 +4,21 @@ services:
     env: python
     plan: free
     buildCommand: |
+      echo "Updating apt-get and installing wget and unzip..."
       apt-get update && apt-get install -y wget unzip
+      
+      echo "Downloading Google Chrome..."
       wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_96.0.4664.110-1_amd64.deb -O google-chrome.deb
+
+      echo "Creating directory for Chrome..."
       mkdir -p /opt/google/chrome
+      
+      echo "Extracting Chrome without root access..."
       dpkg-deb -xv google-chrome.deb /opt/google/chrome
+
+      echo "Checking if Chrome was installed..."
+      find /opt/google/chrome
+
+      echo "Installing Python dependencies..."
       pip install -r requirements.txt
     startCommand: gunicorn -w 4 -b 0.0.0.0:8000 app:app
