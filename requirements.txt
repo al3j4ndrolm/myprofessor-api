@@ -1,4 +1,4 @@
-Flask
+fastapi
+uvicorn
 selenium
-gunicorn
-webdriver-manager  # To automatically handle ChromeDriver installation
+webdriver-manager

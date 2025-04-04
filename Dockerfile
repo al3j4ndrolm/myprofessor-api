@@ -24,5 +24,5 @@ WORKDIR /app
 # Expose port 8000 for the web service
 EXPOSE 8000
 
-# Run the app using gunicorn
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8000", "--timeout", "120", "app:app"]
+# Run the app using Uvicorn
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
